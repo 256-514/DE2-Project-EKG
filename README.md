@@ -8,39 +8,29 @@
 ## 👥 Členové týmu
 
  - Tomáš Běčák - Odpovědný za Github
- - Mykhailo Krasichkov - Odpovědný za 
+ - Mykhailo Krasichkov - Odpovědný za Github
  - Daniel Kroužil - Odpovědný za Github
 
 ## 📝 Popis projektu
 
-Tento projekt realizuje měření vzdálenosti pomocí dvou ultrazvukových senzorů HS-SR04, řízených FPGA. Systém umožňuje:
- - **Měření vzdálenosti:**
-
- - **Zobrazení:**
-
- - **Signalizace:**
-
+Tento projekt realizuje měření EKG a tepovou frekvenci pomocí tří AgCl elektrod, které jsou propojené s AD8232 Monitorem, řízených deskou arduino UNO. Systém umožňuje:
+ - **Měření signálu EKG:**
  
+ - **Zesílení signálu mV --> V**
+
+ - **Vzorkování, hledáni R špiček**
+
+ - **Zobrazení signálu a tepové frekvence:**
+
 ## 🔌 Hardware
 
 Použité komponenty
  - Deska Arduino UNO Digital R3
  - EKG monitor AD8232
- - LCD display 
- - Rezistory 2,2k a 4,7k, nepájivé pole, přepojovací vodiče
+ - LCD display Digilent PmodCLP
 
 ## 🎚️ Zapojení 
 
-| Pin       | Komponenta     | Funkce                                                          |
-|-----------|----------------|-----------------------------------------------------------------|
-| JA0       | Levý senzor    | Trigger                                                         |
-| JC0       | Levý senzor    | Echo                                                            |
-| JD0       | Pravý senzor   | Trigger                                                         |
-| JB0       | Pravý senzor   | Echo                                                            |
-| SW[8:0]   | Přepínače      | Nastavení prahové hodnoty (0–511 cm)                            |
-| BTNU      | Tlačítko       | Reset                                                           |
-| BTNC      | Tlačítko       | Zbrazení vzdálenosti na osmimístném sedmisegmentovém displeji   |
-| BTND      | Tlačítko       | Zobrazit práhové hodnoty (0-511 cm)                             |
 
 ## 🛠️ Hardware design
 
@@ -51,11 +41,9 @@ Použité komponenty
 
 ## 🔍 Jak to funguje uvnitř?
 
+
 📂 **Hlavní soubory**
- - [top_level.vhd](project_files/top_level.vhd) – Tento hlavní 'top' modul propojuje všechny komponenty.
 
-
- - [echo_receiver.vhd](project_files/echo_receiver.vhd) – Tento modul slouží k měření vzdálenosti na základě doby trvání signálu ```echo_in```. Po obdržení impulsu se 
 
 ## Video ukázka měření
 
