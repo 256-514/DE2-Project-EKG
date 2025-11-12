@@ -1,9 +1,8 @@
-# DE2-Project-EKG
   **Vysoké učení technické v Brně, Fakulta elektrotechniky a komunikačních technologií, Ústav radioelektroniky, 2025/2026**  
 
 ---
 
-# Řídicí systém pro ultrazvukové senzory parkovacího asistenta
+# EKG systém pro měření tepové frekvence 
 
 
 ## 👥 Členové týmu
