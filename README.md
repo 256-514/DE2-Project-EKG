@@ -8,9 +8,9 @@
 
 ## 👥 Členové týmu
 
- - Tomáš Běčák - Odpovědný za Github, schéma a display_control
- - Mykhailo Krasichkov - Odpovědný za echo_detect, trig_pulse a zapojení na desce
- - Daniel Kroužil - Odpovědný za Github, controller
+ - Tomáš Běčák - Odpovědný za Github
+ - Mykhailo Krasichkov - Odpovědný za 
+ - Daniel Kroužil - Odpovědný za Github
 
 ## 📝 Popis projektu
 
