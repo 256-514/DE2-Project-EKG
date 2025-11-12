@@ -50,3 +50,7 @@ Použité komponenty
 
 ---
 ---
+Poznámky:
+žádná knihovna arduiono.h
+ne arduino framework
+zdrojáky C a hlavičkové soubory
