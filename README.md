@@ -2,7 +2,7 @@
 
 ---
 
-# EKG systém pro měření tepové frekvence a zobrazení EKG signálu. 
+# Systém pro měření tepové frekvence a zobrazení EKG signálu. 
 
 
 ## 👥 Členové týmu
