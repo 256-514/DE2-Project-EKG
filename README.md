@@ -27,6 +27,7 @@ Tento projekt realizuje měření EKG a tepovou frekvenci pomocí tří AgCl ele
 Použité komponenty
  - Deska Arduino UNO Digital R3
  - EKG monitor AD8232
+ - I2C OLED display 128x64, driver SH1106
  - LCD display Digilent PmodCLP
 
 ## 🎚️ Zapojení 
