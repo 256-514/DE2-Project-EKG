@@ -37,7 +37,13 @@ Použité komponenty
 
 
 ## ⚙️ Funkce systému
+ - **Měření signálu EKG:**
+ 
+ - **Zesílení signálu mV --> V**
 
+ - **Vzorkování, hledáni R špiček**
+
+ - **Zobrazení signálu a tepové frekvence:**
 
 
 ## 🔍 Jak to funguje uvnitř?
