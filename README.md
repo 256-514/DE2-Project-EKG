@@ -44,6 +44,18 @@ Použité komponenty
 
 
 📂 **Hlavní soubory**
+```
+/..................................................kořenový adresář přiloženého archivu
+├── logo............................................loga školy a fakulty
+│   ├── BUT_abbreviation_color_PANTONE_EN.pdf
+│   ├── BUT_color_PANTONE_EN.pdf
+│   ├── FEEC_abbreviation_color_PANTONE_EN.pdf
+│   ├── FEKT_zkratka_barevne_PANTONE_CZ.pdf
+│   ├── UTKO_color_PANTONE_CZ.pdf
+│   ├── UTKO_color_PANTONE_EN.pdf
+│   ├── VUT_barevne_PANTONE_CZ.pdf
+│   ├── VUT_symbol_barevne_PANTONE_CZ.pdf
+│   └── VUT_zkratka_barevne_PANTON_
 
 
 ## Video ukázka měření
