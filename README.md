@@ -27,7 +27,7 @@ Systém v reálném čase vypočítává tepovou frekvenci na základě detekce 
 
 $BPM = \frac{60000}{\Delta t_{RR}}$
 
-kde $ \Delta t_{RR} $ je rozdíl dvou R-peak časů v milisekundách.
+kde $\Delta t_{RR}$ je rozdíl dvou R-peak časů v milisekundách.
 
 ## ⚙️ Funkční bloky systému
 
