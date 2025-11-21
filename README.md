@@ -24,11 +24,10 @@ Systém v reálném čase vypočítává tepovou frekvenci na základě detekce 
 1. Při detekci R-špičky mikrokontrolér změří čas od předchozí R-špičky.  
 2. Tento interval (RR interval) se použije pro výpočet tepové frekvence:
    
-\[
-BPM = \frac{60000}{\Delta t_{RR}}
-\]
 
-kde \( \Delta t_{RR} \) je rozdíl dvou R-peak časů v milisekundách.
+$BPM = \frac{60000}{\Delta t_{RR}}$
+
+kde $ \Delta t_{RR} $ je rozdíl dvou R-peak časů v milisekundách.
 
 ## ⚙️ Funkční bloky systému
 
