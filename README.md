@@ -14,7 +14,8 @@
 ## 📝 Popis projektu
 
 Tento projekt realizuje přenosný **EKG monitor**, který snímá a zobrazuje elektrickou aktivitu srdce pomocí modulu **AD8232** a mikrokontroléru **ATmega328P (Arduino UNO)**.
-Systém kromě vizualizace EKG signálu také automaticky vypočítává tepovou frekvenci. Výpočet probíhá na mikrokontroléru ATmega328P.
+Systém kromě vizualizace EKG signálu také automaticky vypočítává tepovou frekvenci. Výpočet probíhá na mikrokontroléru ATmega328P. 
+https://physionet.org/content/ptb-xl/1.0.3/records100/14000/
 
 ## 🧮 Výpočet tepové frekvence (BPM)
 
