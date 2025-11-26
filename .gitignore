@@ -1,6 +1,7 @@
 .pio/
 build/
 dist/
+tools/
 .vscode/
 *.code-workspace
 *.o

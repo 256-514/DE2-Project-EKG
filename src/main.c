@@ -1,52 +1,75 @@
-#include <avr/io.h>         // AVR device-specific IO definitions
+#include <avr/io.h>
 #include <util/delay.h>
-#include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
-#include <twi.h>            // I2C/TWI library for AVR-GCC
-#include <oled.h>
-#include <uart.h>           // Peter Fleury's UART library
-#include <stdio.h>          // C library. Needed for `sprintf`
-#include "timer.h"
-#include "sine_lut.h"
+#include <avr/interrupt.h>
 
-#define W 128
-#define H 64
-#define PERIOD 64
+#include "uart.h"
+#include "twi.h"
+#include "oled.h"
+#include "ecg_loader.h"
+#include "wfdb_parser.h"
 
-void scroll_left(void)
+#include "dataset_14030_lr.h"     // ← toto stačí, nic extern už nedeklarovat
+
+#define SCREEN_W 128
+#define SCREEN_H 64
+#define BASELINE_Y 32
+#define SCALE 0.05f
+#define SPEED_MS 5
+
+uint8_t x_pos = 0;
+
+static uint8_t ecg_to_y(int16_t s)
 {
-   for (uint8_t y = 0; y < H; y++)
-   {
-       for (uint8_t x = 0; x < W - 1; x++)
-       {
-           uint8_t pix = oled_check_buffer(x + 1, y);
-           oled_drawPixel(x, y, pix);
-       }
-       oled_drawPixel(W - 1, y, 0);  // clear last column
-   }
+    float v = s * SCALE;
+    int16_t y = BASELINE_Y - (int16_t)v;
+    if (y < 0) y = 0;
+    if (y >= SCREEN_H) y = SCREEN_H - 1;
+    return (uint8_t)y;
 }
 
 int main(void)
 {
-   oled_init(OLED_DISP_ON);
-   oled_display();
+    uart_init(UART_BAUD_SELECT(115200, F_CPU));
+    twi_init();
+    oled_init(0);       // init OK
+    oled_sleep(0);      // zapne display
+    oled_clear_buffer();
+    oled_display();
+    sei();
 
-   uint8_t idx = 0;
+    ecg_file_t ecg;
 
-   while (1)
-   {
-       scroll_left();
+    // ✔ správné jméno datasetu + headeru
+    ecg_open(&ecg, dataset_14030_lr_dat, dataset_14030_lr_hea);
 
-       uint8_t y = sine_lut[idx];
-       idx = (idx + 1) % PERIOD;
+    int16_t sample;
+    char buf[16];
 
-       oled_drawPixel(W - 1, H - 1 - y, 1);
+    while (1)
+    {
+        if (ecg_read_sample(&ecg, &sample) != 0)
+        {
+            ecg.pos = 0;
+            continue;
+        }
 
-       // update by pages (blocks) for NO FLICKERING
-       for (uint8_t page = 0; page < H/8; page++)
-       {
-           oled_display_block(0, page, W);
-       }
+        itoa(sample, buf, 10);
+        uart_puts(buf);
+        uart_puts("\r\n");
 
-       _delay_ms(16);
-   }
+        uint8_t y = ecg_to_y(sample);
+
+        oled_drawLine(x_pos, 0, x_pos, SCREEN_H - 1, BLACK);
+        oled_drawPixel(x_pos, y, WHITE);
+
+        x_pos++;
+        if (x_pos >= SCREEN_W)
+        {
+            x_pos = 0;
+            oled_clear_buffer();
+        }
+
+        oled_display();
+        _delay_ms(SPEED_MS);
+    }
 }
