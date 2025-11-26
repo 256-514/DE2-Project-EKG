@@ -52,58 +52,26 @@ Použité komponenty
 ## 🎚️ Zapojení 
 <img src="images/zapojeni.jpg" width="500">
 
-<table>
-  <tr>
-    <td style="vertical-align: top; padding-right: 20px;">
+| Arduino | AD8232 | 
+|------|---------| 
+| 3V3 | 3.3V | 
+| GND | GND | 
+| A5 | OUTPUT | 
+| D2 | LO- | 
+| D3 | LO+ | 
 
-      <table>
-        <thead>
-          <tr><th>Arduino</th><th>AD8232</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>3V3</td><td>3.3V</td></tr>
-          <tr><td>GND</td><td>GND</td></tr>
-          <tr><td>A5</td><td>OUTPUT</td></tr>
-          <tr><td>D2</td><td>LO-</td></tr>
-          <tr><td>D3</td><td>LO+</td></tr>
-        </tbody>
-      </table>
+| Arduino | SH1106 | 
+|------|---------| 
+| 5V | VCC | 
+| GND | GND | 
+| A5 | SCK | 
+| A4 | SDA |
 
-    </td>
-
-    <td style="vertical-align: top; padding-right: 20px;">
-
-      <table>
-        <thead>
-          <tr><th>Arduino</th><th>SH1106</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>5V</td><td>VCC</td></tr>
-          <tr><td>GND</td><td>GND</td></tr>
-          <tr><td>A5</td><td>SCK</td></tr>
-          <tr><td>A4</td><td>SDA</td></tr>
-        </tbody>
-      </table>
-
-    </td>
-
-    <td style="vertical-align: top;">
-
-      <table>
-        <thead>
-          <tr><th>Arduino</th><th>HW-827</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>GND</td><td>GND</td></tr>
-          <tr><td>5V</td><td>VCC</td></tr>
-          <tr><td>A0</td><td>Signal</td></tr>
-        </tbody>
-      </table>
-
-    </td>
-  </tr>
-</table>
-
+| Arduino | HW-827 | 
+|------|---------| 
+| GND | GND | 
+| 5V | VCC | 
+| A0 | Signal |
 
 
 <div style="display: flex; justify-content: space-between; gap: 20px;">
