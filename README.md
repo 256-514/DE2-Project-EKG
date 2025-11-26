@@ -52,6 +52,21 @@ Použité komponenty
 ## 🎚️ Zapojení 
 <img src="images/zapojeni.png" alt="top level block diagram" width="1000"/>
 
+| Arduino | AD8232 |
+|------|---------|
+| 3V3 | 3.3V |
+| GND | GND |
+| A5 | OUTPUT |
+| D2 | LO- |
+| D3 | LO+ |
+
+| Arduino | SH1106 |
+|------|---------|
+| 5V | VCC |
+| GND | GND |
+| A5 | SCK |
+| A4 | SDA |
+
 ## 🛠️ Hardware design
 
 
