@@ -50,7 +50,7 @@ Použité komponenty
  - LCD display Digilent PmodCLP
 
 ## 🎚️ Zapojení 
-
+<img src="images/zapojeni.png" alt="top level block diagram" width="1000"/>
 
 ## 🛠️ Hardware design
 
