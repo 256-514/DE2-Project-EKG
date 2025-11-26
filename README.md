@@ -67,6 +67,12 @@ Použité komponenty
 | A5 | SCK |
 | A4 | SDA |
 
+| Arduino | HW-827 |
+|------|---------|
+| GND | GND |
+| 5V | VCC |
+| A0 | Signal |
+
 ## 🛠️ Hardware design
 
 
