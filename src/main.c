@@ -1,117 +1,133 @@
+// ... (includes a init funkce zůstávají stejné) ...
 #include <avr/io.h>
-#include <util/delay.h>
 #include <avr/interrupt.h>
-#include <stdlib.h>
+#include <util/delay.h>
+#include <stdio.h>
+#include <string.h>
 
-#include "uart.h"
-#include "twi.h"
+
+#include "timer.h" // Váš poskytnutý timer.h
+#include "pulse.h"
 #include "oled.h"
-#include "ecg_loader.h"
-#include "wfdb_parser.h"
-#include "dataset_14030_lr.h"
 
-/* Display parameters */
-#define SCREEN_W       128
-#define SCREEN_H       64
 
-#define BASELINE_Y     40
-#define SPEED_MS       5
-#define SMOOTH_N       4
-#define TIME_STRETCH   2
+// --- Millis implementace pomocí Timer0 Overflow ---
+volatile uint32_t ms_counter = 0;
 
-/* Auto-scaling parameters */
-#define TARGET_R_PEAK  30      // chceme aby R-špička měla ~30 px
-float SCALE = 0.05f;           // počáteční hodnota, pak se automaticky přepíše
-uint8_t scale_locked = 0;
 
-/* global drawing state */
-uint8_t x_pos = 0;
-int16_t smooth_buf[SMOOTH_N];
-uint8_t smooth_idx = 0;
-uint8_t smooth_count = 0;
-uint8_t prev_y = BASELINE_Y;
-
-static uint8_t ecg_to_y(int16_t s)
+// Timer0 Overflow ISR - voláno každou 1ms (viz nastavení níže)
+ISR(TIMER0_OVF_vect)
 {
-    int16_t y = BASELINE_Y - (int16_t)(s * SCALE);
-
-    if (y < 0) y = 0;
-    if (y >= SCREEN_H) y = SCREEN_H - 1;
-    return (uint8_t)y;
+    ms_counter++;
+    // TCNT0 se v Normal mode resetuje samo po přetečení (255 -> 0)
+    // Ale pozor: Pro přesně 1ms při 16MHz a prescaleru 64 potřebujeme 250 tiků.
+    // Overflow je 256 tiků. To je chyba cca 2.4%.
+    // Pro BPM to stačí, ale můžeme to kompenzovat nastavením TCNT0 = 6;
+    TCNT0 = 6;
 }
+
+
+uint32_t millis(void)
+{
+    uint32_t m;
+    cli();
+    m = ms_counter;
+    sei();
+    return m;
+}
+
 
 int main(void)
 {
-    uart_init(UART_BAUD_SELECT(115200, F_CPU));
-    twi_init();
-    oled_init(0);
-    oled_sleep(0);
-    oled_clear_buffer();
-    oled_display();
-    sei();
+    // ... (init hardware stejný jako předtím) ...
+       
+    // Inicializace Timer0 pro millis() pomocí maker z timer.h
+    // tim0_ovf_1ms() nastaví prescaler 64 -> overflow cca každou 1.024 ms
+    tim0_ovf_1ms();
+    tim0_ovf_enable(); // Povolit přerušení
+   
+    pulse_init();      // Inicializace ADC
+   
+    // Oled init (v oled.c se často používá I2C, ověřte zda je I2C init součástí oled_init)
+    // Pokud vaše oled.c nepoužívá twi_init, musíte ho zavolat zde.
+    // Ale většina oled knihoven si I2C nastaví.
+   
+    oled_init(OLED_DISP_ON);
+    oled_clrscr();
+    oled_charMode(NORMALSIZE);
 
-    ecg_file_t ecg;
-    ecg_open(&ecg, dataset_14030_lr_dat, dataset_14030_lr_hea);
 
-    int16_t sample;
-    char buf[16];
+    sei(); // Povolit globální přerušení (nutné pro Timer a ADC)
 
-    int16_t max_abs = 0;
-    uint16_t sample_count = 0;
+
+    // --- Proměnné ---
+    char buffer[20];
+    uint16_t current_bpm = 0;
+    uint16_t signal_val = 0;
+    uint8_t heart_anim = 0;
+    uint32_t last_draw = 0;
+
+
+    // Zobrazování průměrného BPM pro lepší čitelnost
+    uint16_t bpm_sum = 0;
+    uint8_t bpm_count = 0;
+    uint16_t display_bpm = 0;
 
     while (1)
     {
-        if (ecg_read_sample(&ecg, &sample) != 0)
-        {
-            ecg.pos = 0;
-            continue;
+        // 2. Čtení a zpracování
+        signal_val = pulse_read_filtered();
+        uint16_t new_bpm = pulse_process_for_bpm(signal_val);
+
+        if (new_bpm > 0) {
+            // Průměrování posledních 3 tepů pro stabilitu čísla na displeji
+            bpm_sum += new_bpm;
+            bpm_count++;
+            if (bpm_count >= 3) {
+                display_bpm = bpm_sum / 3;
+                bpm_sum = 0;
+                bpm_count = 0;
+            }
+            // Okamžitá reakce pro animaci
+            heart_anim = 1;
         }
 
-        /* --- AUTO-SCALE během prvních 200 vzorků --- */
-        if (!scale_locked)
+        // 3. Vykreslování (každých 100ms)
+        if (millis() - last_draw > 100)
         {
-            int16_t abs_v = (sample < 0) ? -sample : sample;
-            if (abs_v > max_abs) max_abs = abs_v;
+            last_draw = millis();
+            oled_clrscr();
+            
+            oled_gotoxy(0, 0);
+            oled_puts("--- EKG Monitor ---");
 
-            sample_count++;
-
-            if (sample_count > 200) {
-                SCALE = (float)TARGET_R_PEAK / (float)max_abs;
-                scale_locked = 1;
+            oled_gotoxy(0, 2);
+            if (display_bpm > 0) {
+                sprintf(buffer, "BPM: %d", display_bpm);
+            } else {
+                sprintf(buffer, "BPM: --");
             }
-        }
+            oled_puts(buffer);
 
-        /* Moving average */
-        smooth_buf[smooth_idx++] = sample;
-        if (smooth_idx >= SMOOTH_N) smooth_idx = 0;
-        if (smooth_count < SMOOTH_N) smooth_count++;
-
-        long sum = 0;
-        for (uint8_t i = 0; i < smooth_count; i++)
-            sum += smooth_buf[i];
-        int16_t s_avg = (int16_t)(sum / smooth_count);
-
-        uint8_t y = ecg_to_y(s_avg);
-
-        for (uint8_t k = 0; k < TIME_STRETCH; k++)
-        {
-            uint8_t x_prev = (x_pos == 0) ? (SCREEN_W - 1) : (x_pos - 1);
-
-            oled_drawLine(x_pos, 0, x_pos, SCREEN_H - 1, BLACK);
-            oled_drawLine(x_prev, prev_y, x_pos, y, WHITE);
-
-            prev_y = y;
-
-            x_pos++;
-            if (x_pos >= SCREEN_W)
-            {
-                x_pos = 0;
-                oled_clear_buffer();
-                prev_y = y;
+            // Výpis RAW a PRAHU pro diagnostiku
+            // V pulse.c jsme threshold udělali static, takže ho nevidíme přímo.
+            // Pro ladění můžete v pulse.c přidat funkci `uint16_t get_threshold()`
+            // Zde jen vypíšeme RAW hodnotu
+            oled_gotoxy(0, 4);
+            sprintf(buffer, "Raw: %d", signal_val);
+            oled_puts(buffer);
+            
+            if (heart_anim) {
+                oled_gotoxy(80, 2);
+                oled_puts("<3"); 
+                heart_anim = 0;
             }
-
+            
+            #ifdef GRAPHICMODE
             oled_display();
-            _delay_ms(SPEED_MS);
+            #endif
         }
+        _delay_ms(2); 
     }
+    return 0;
 }
