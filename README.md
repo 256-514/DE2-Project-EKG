@@ -71,6 +71,53 @@ Použité komponenty
 | 5V | VCC | 
 | A0 | Signal |
 
+<table>
+  <tr>
+    <!-- První tabulka: AD8232 -->
+    <td valign="top">
+
+| Arduino | AD8232 |
+| :--- | :--- |
+| 3V3 | 3.3V |
+| GND | GND |
+| A5 | OUTPUT |
+| D2 | LO- |
+| D3 | LO+ |
+
+    </td>
+    
+    <!-- Mezera mezi 1. a 2. tabulkou -->
+    <td width="50">&nbsp;</td>
+
+    <!-- Druhá tabulka: SH1106 -->
+    <td valign="top">
+
+| Arduino | SH1106 |
+| :--- | :--- |
+| 5V | VCC |
+| GND | GND |
+| A5 | SCK |
+| A4 | SDA |
+
+    </td>
+
+    <!-- Mezera mezi 2. a 3. tabulkou -->
+    <td width="50">&nbsp;</td>
+
+    <!-- Třetí tabulka: HW-827 -->
+    <td valign="top">
+
+| Arduino | HW-827 |
+| :--- | :--- |
+| GND | GND |
+| 5V | VCC |
+| A0 | Signal |
+
+    </td>
+  </tr>
+</table>
+
+
 ## 🛠️ Hardware design
 
 Obr. 1 Propojení 
