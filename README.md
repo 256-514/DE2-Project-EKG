@@ -50,8 +50,6 @@ Použité komponenty
  - LCD display Digilent PmodCLP
 
 ## 🎚️ Zapojení 
-<img src="images/zapojeni.jpg" width="500">
-
 | Arduino | AD8232 | 
 |------|---------| 
 | 3V3 | 3.3V | 
