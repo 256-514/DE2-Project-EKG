@@ -50,6 +50,47 @@ Použité komponenty
  - LCD display Digilent PmodCLP
 
 ## 🎚️ Zapojení 
+
+<table>
+  <tr>
+    <td valign="top">
+
+| Sloupec A | Sloupec B |
+|---|---|
+|  |  |
+|  |  |
+
+    </td>
+
+    <!-- mezera mezi tabulkami -->
+    <td width="40">&nbsp;</td>
+
+    <td valign="top">
+
+| Sloupec A | Sloupec B |
+|---|---|
+|  |  |
+|  |  |
+
+    </td>
+
+    <!-- mezera mezi tabulkami -->
+    <td width="40">&nbsp;</td>
+
+    <td valign="top">
+
+| Sloupec A | Sloupec B |
+|---|---|
+|  |  |
+|  |  |
+
+    </td>
+  </tr>
+</table>
+
+
+
+
 | Arduino | AD8232 |
 |------|---------| 
 | 3V3 | 3.3V | 
