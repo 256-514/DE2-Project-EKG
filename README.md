@@ -54,39 +54,34 @@ Použité komponenty
 <table>
   <tr>
     <td valign="top">
-
+      
 | Sloupec A | Sloupec B |
-|---|---|
-|  |  |
-|  |  |
+|-----------|-----------|
+|           |           |
+|           |           |
 
     </td>
-
-    <!-- mezera mezi tabulkami -->
-    <td width="40">&nbsp;</td>
-
+    <td style="width:40px"></td>
     <td valign="top">
-
+      
 | Sloupec A | Sloupec B |
-|---|---|
-|  |  |
-|  |  |
+|-----------|-----------|
+|           |           |
+|           |           |
 
     </td>
-
-    <!-- mezera mezi tabulkami -->
-    <td width="40">&nbsp;</td>
-
+    <td style="width:40px"></td>
     <td valign="top">
-
+      
 | Sloupec A | Sloupec B |
-|---|---|
-|  |  |
-|  |  |
+|-----------|-----------|
+|           |           |
+|           |           |
 
     </td>
   </tr>
 </table>
+
 
 
 
