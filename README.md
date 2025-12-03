@@ -84,15 +84,6 @@ Obr. 2 Propojení HW-827 s piny desky Arduino UNO ‎*(zdroj: [DevXplained](http
 Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab](https://microcontrollerslab.com/ad8232-ecg-module-pinout-interfacing-with-arduino-applications-features/))*
 <img src="images/AD8232.jpeg" alt="AD8232 (EKG modul)" width="45%">
 
-
-<div style="display: flex; justify-content: space-between; gap: 20px;">
-
-  <img src="images/HW-827.jpg" alt="HW-827 (Pulse Sensor)" width="45%">
-  
-  <img src="images/AD8232.jpeg" alt="AD8232 (EKG modul)" width="45%">
-
-</div>
-
 ## ⚙️ Funkce systému
  - **Měření signálu EKG:**
  
