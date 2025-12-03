@@ -54,7 +54,7 @@ Použité komponenty
 |------|---------| 
 | 3V3 | 3.3V | 
 | GND | GND | 
-| A5 | OUTPUT | 
+| A0 | OUTPUT | 
 | D2 | LO- | 
 | D3 | LO+ | 
 
