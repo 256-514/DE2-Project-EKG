@@ -79,7 +79,7 @@ Obr. 1 Propojení
 
 <img src="images/HW-827.jpg" alt="HW-827 (Pulse Sensor)" width="45%">
 
-Obr. 2 Propojení HW-827 s piny desky Arduino UNO ‎*(zdroj: [DevXplained](https://devxplained.eu/en/blog/heart-rate-module-part-1))* 
+Obr. 2 Propojení HW-827 s piny desky Arduino UNO ‎**(zdroj: [DevXplained](https://devxplained.eu/en/blog/heart-rate-module-part-1))**
 
 <img src="images/AD8232.jpeg" alt="AD8232 (EKG modul)" width="45%">
 
