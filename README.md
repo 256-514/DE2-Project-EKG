@@ -76,7 +76,7 @@ Použité komponenty
 Obr. 1 Propojení 
 <img src="images/zapojeni.jpg" width="500">
 
-Obr. 2 Propojení HW-827 s piny desky Arduino UNO ‎*(zdroj: web [DevXplained](https://devxplained.eu/en/blog/heart-rate-module-part-1))* ‎ ‎ ‎ ‎‎  ‎‎ ‎  Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: web [DevXplained](https://devxplained.eu/en/blog/heart-rate-module-part-1))*
+Obr. 2 Propojení HW-827 s piny desky Arduino UNO ‎*(zdroj: [DevXplained](https://devxplained.eu/en/blog/heart-rate-module-part-1))* ‎ ‎ ‎ ‎‎  ‎‎ ‎  Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab](https://microcontrollerslab.com/ad8232-ecg-module-pinout-interfacing-with-arduino-applications-features/))*
 <div style="display: flex; justify-content: space-between; gap: 20px;">
 
   <img src="images/HW-827.jpg" alt="HW-827 (Pulse Sensor)" width="45%">
