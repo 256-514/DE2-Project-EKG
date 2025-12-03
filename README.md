@@ -71,20 +71,12 @@ Použité komponenty
 | 5V | VCC | 
 | A0 | Signal |
 
-
-<div style="display: flex; justify-content: space-between; gap: 20px;">
-
-  <img src="images/HW-827.jpg" alt="HW-827 (Pulse Sensor)" width="45%">
-  
-  <img src="images/AD8232.jpeg" alt="AD8232 (EKG modul)" width="45%">
-
-</div>
-
-
 ## 🛠️ Hardware design
 
+Obr. 1  
 <img src="images/zapojeni.jpg" width="500">
 
+Obr. 2  ‎ ‎ ‎ ‎ ‎ ‎‎  ‎‎ ‎  Obr. 3 
 <div style="display: flex; justify-content: space-between; gap: 20px;">
 
   <img src="images/HW-827.jpg" alt="HW-827 (Pulse Sensor)" width="45%">
