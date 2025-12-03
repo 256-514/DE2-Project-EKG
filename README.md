@@ -73,16 +73,14 @@ Použité komponenty
 
 ## 🛠️ Hardware design
 
-
-Obr. 1 Propojení
 <img src="images/zapojeni.jpg" alt="HW-827" width="500">
+Obr. 1 Propojení
 
-Obr. 2 Propojení HW-827 s piny desky Arduino UNO ‎*(zdroj: [DevXplained](https://devxplained.eu/en/blog/heart-rate-module-part-1))* ‎ ‎ ‎ ‎‎  ‎‎ ‎  
 <img src="images/HW-827.jpg" alt="HW-827 (Pulse Sensor)" width="45%">
+Obr. 2 Propojení HW-827 s piny desky Arduino UNO ‎*(zdroj: [DevXplained](https://devxplained.eu/en/blog/heart-rate-module-part-1))* 
 
-
-Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab](https://microcontrollerslab.com/ad8232-ecg-module-pinout-interfacing-with-arduino-applications-features/))*
 <img src="images/AD8232.jpeg" alt="AD8232 (EKG modul)" width="45%">
+Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab](https://microcontrollerslab.com/ad8232-ecg-module-pinout-interfacing-with-arduino-applications-features/))*
 
 ## ⚙️ Funkce systému
  - **Měření signálu EKG:**
