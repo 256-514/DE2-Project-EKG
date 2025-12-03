@@ -86,7 +86,7 @@ Použité komponenty
 
     </td>
     
-    <!-- Mezera mezi 1. a 2. tabulkou -->
+
     <td width="50">&nbsp;</td>
 
     <!-- Druhá tabulka: SH1106 -->
@@ -101,7 +101,7 @@ Použité komponenty
 
     </td>
 
-    <!-- Mezera mezi 2. a 3. tabulkou -->
+
     <td width="50">&nbsp;</td>
 
     <!-- Třetí tabulka: HW-827 -->
