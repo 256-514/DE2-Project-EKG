@@ -53,34 +53,59 @@ Použité komponenty
 
 <table>
   <tr>
-    <td valign="top">
-      
-| Sloupec A | Sloupec B |
-|-----------|-----------|
-|           |           |
-|           |           |
-
+    <td style="padding-right:20px;">
+      <table>
+        <tr>
+          <th>Sloupec A</th>
+          <th>Sloupec B</th>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
     </td>
-    <td style="width:40px"></td>
-    <td valign="top">
-      
-| Sloupec A | Sloupec B |
-|-----------|-----------|
-|           |           |
-|           |           |
 
+    <td style="padding-right:20px;">
+      <table>
+        <tr>
+          <th>Sloupec A</th>
+          <th>Sloupec B</th>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
     </td>
-    <td style="width:40px"></td>
-    <td valign="top">
-      
-| Sloupec A | Sloupec B |
-|-----------|-----------|
-|           |           |
-|           |           |
 
+    <td>
+      <table>
+        <tr>
+          <th>Sloupec A</th>
+          <th>Sloupec B</th>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
     </td>
   </tr>
 </table>
+
 
 
 
