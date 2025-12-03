@@ -76,7 +76,7 @@ Použité komponenty
 Obr. 1  
 <img src="images/zapojeni.jpg" width="500">
 
-Obr. 2  ‎ ‎ ‎ ‎ ‎ ‎‎  ‎‎ ‎  Obr. 3 
+Obr. 2 Propojení HW-827 s piny desky Arduino UNO (zdroj: )‎ ‎ ‎ ‎ ‎ ‎‎  ‎‎ ‎  Obr. 3 
 <div style="display: flex; justify-content: space-between; gap: 20px;">
 
   <img src="images/HW-827.jpg" alt="HW-827 (Pulse Sensor)" width="45%">
