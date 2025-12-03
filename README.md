@@ -71,59 +71,20 @@ Použité komponenty
 | 5V | VCC | 
 | A0 | Signal |
 
-<table>
-  <tr>
-    <!-- První tabulka: AD8232 -->
-    <td valign="top">
-
-| Arduino | AD8232 |
-| :--- | :--- |
-| 3V3 | 3.3V |
-| GND | GND |
-| A5 | OUTPUT |
-| D2 | LO- |
-| D3 | LO+ |
-
-    </td>
-    
-
-    <td width="50">&nbsp;</td>
-
-    <!-- Druhá tabulka: SH1106 -->
-    <td valign="top">
-
-| Arduino | SH1106 |
-| :--- | :--- |
-| 5V | VCC |
-| GND | GND |
-| A5 | SCK |
-| A4 | SDA |
-
-    </td>
-
-
-    <td width="50">&nbsp;</td>
-
-    <!-- Třetí tabulka: HW-827 -->
-    <td valign="top">
-
-| Arduino | HW-827 |
-| :--- | :--- |
-| GND | GND |
-| 5V | VCC |
-| A0 | Signal |
-
-    </td>
-  </tr>
-</table>
-
-
 ## 🛠️ Hardware design
 
-Obr. 1 Propojení 
+Obr. 1 Propojení
+
 <img src="images/zapojeni.jpg" width="500">
 
-Obr. 2 Propojení HW-827 s piny desky Arduino UNO ‎*(zdroj: [DevXplained](https://devxplained.eu/en/blog/heart-rate-module-part-1))* ‎ ‎ ‎ ‎‎  ‎‎ ‎  Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab](https://microcontrollerslab.com/ad8232-ecg-module-pinout-interfacing-with-arduino-applications-features/))*
+Obr. 2 Propojení HW-827 s piny desky Arduino UNO ‎*(zdroj: [DevXplained](https://devxplained.eu/en/blog/heart-rate-module-part-1))* ‎ ‎ ‎ ‎‎  ‎‎ ‎  
+<img src="images/HW-827.jpg" alt="HW-827 (Pulse Sensor)" width="45%">
+
+
+Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab](https://microcontrollerslab.com/ad8232-ecg-module-pinout-interfacing-with-arduino-applications-features/))*
+<img src="images/AD8232.jpeg" alt="AD8232 (EKG modul)" width="45%">
+
+
 <div style="display: flex; justify-content: space-between; gap: 20px;">
 
   <img src="images/HW-827.jpg" alt="HW-827 (Pulse Sensor)" width="45%">
