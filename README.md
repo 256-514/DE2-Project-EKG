@@ -73,6 +73,7 @@ Použité komponenty
 
 ## 🛠️ Hardware design
 
+
 Obr. 1 Propojení
 <img src="images/zapojeni.jpg" width="500">
 
