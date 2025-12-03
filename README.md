@@ -74,7 +74,6 @@ Použité komponenty
 ## 🛠️ Hardware design
 
 Obr. 1 Propojení
-
 <img src="images/zapojeni.jpg" width="500">
 
 Obr. 2 Propojení HW-827 s piny desky Arduino UNO ‎*(zdroj: [DevXplained](https://devxplained.eu/en/blog/heart-rate-module-part-1))* ‎ ‎ ‎ ‎‎  ‎‎ ‎  
