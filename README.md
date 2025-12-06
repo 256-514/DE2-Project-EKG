@@ -123,6 +123,7 @@ Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab
 ## Video ukázka měření
 ### Prototyp:
 
+https://github.com/user-attachments/assets/649df5ae-c37c-476f-b93b-47e00f188a2d
 ---
 ---
 Poznámky:
