@@ -136,6 +136,6 @@ https://github.com/user-attachments/assets/84534ee5-a100-447a-b85d-66abca395b6b
 ---
 ---
 Poznámky:
-žádná knihovna arduiono.h
+žádná knihovna arduino.h
 ne arduino framework
 zdrojáky C a hlavičkové soubory
