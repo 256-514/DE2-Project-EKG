@@ -36,7 +36,7 @@ kde $\Delta t_{RR}$ je rozdíl dvou R-peak časů v milisekundách.
 | **AD8232** | Zesílení a analogová filtrace EKG, detekce odlepené elektrody |
 | **ATmega328P** | ADC převod, EMA filtr, detekce R-špiček, výpočet BPM |
 | **LCD DISPLEJ (SH1106)** | Zobrazení EKG waveformu a BPM |
-| **Tlačítko** | Start/Stop měření |
+| **Tlačítko** | Přepnutí módu EKG/PPG |
 | **Napájení** | 5 V přes USB, AD8232 z 3.3 V |
 
 ## 🔌 Hardware
