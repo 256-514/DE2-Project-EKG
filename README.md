@@ -7,9 +7,9 @@
 
 ## 👥 Členové týmu
 
- - Tomáš Běčák - Odpovědný za Github
- - Mykhailo Krasichkov - Odpovědný za Github
- - Daniel Kroužil - Odpovědný za Github
+ - Tomáš Běčák 
+ - Mykhailo Krasichkov 
+ - Daniel Kroužil 
 
 ## 📝 Popis projektu
 
