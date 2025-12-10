@@ -153,6 +153,32 @@ Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab
 
 ---
 
+<a id="ekg-elektrody"></a>
+## 🩺 Umístění a lepení EKG elektrod
+
+Pro správné měření EKG pomocí modulu **AD8232** je nutné elektrody umístit přesně dle standardního rozmístění. Nesprávné nalepení může vést k:
+
+- nestabilnímu signálu,
+- výpadkům kvůli LO+/LO–,
+- výraznému šumu,
+- nemožnosti detekovat R-špičky a spočítat BPM.
+
+### 📌 Doporučené umístění elektrod (Lead I konfigurace)
+
+Modul AD8232 používá **3 elektrody**:
+
+- **RA (Right Arm)** – pravá klíční kost  
+- **LA (Left Arm)** – levá klíční kost  
+- **RL (Right Leg)** – referenční elektroda (ground), pravý podbřišek
+
+Nebo podle obrázku:
+<img src="images/ECG_electrodes.jpg" alt="HW-827" width="500">
+<p align="center"><sub>
+Zdroj obrázku: Question #91783 na <a href="https://arduino.stackexchange.com/questions/91783/ad8232-measuring-heart-rate-only-if-usb-connector-is-touched-grounding-issue">Arduino StackExchange</a>.
+</sub></p>
+
+---
+
 <a id="funkce-systemu"></a>
 ## ⚙️ Funkce systému
 
