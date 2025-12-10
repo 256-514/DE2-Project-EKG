@@ -127,6 +127,13 @@ Použité komponenty
 | GND | Pravá horní nožička a levá horní nožička | 
 | D6 | Pravá dolní nožička a levá dolní nožička | 
 
+
+Níže je kompletní zapojení systému (Arduino UNO + AD8232 + PPG senzor + OLED SH1106 + mikrospínač):
+
+<p align="center">
+  <img src="images/zapojeni_komplet.png" alt="Schéma zapojení" width="600">
+</p>
+
 ---
 
 <a id="hardware-design"></a>
