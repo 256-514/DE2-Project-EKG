@@ -128,7 +128,7 @@ Použité komponenty
 | D6 | Pravá dolní nožička a levá dolní nožička | 
 
 
-Níže je kompletní zapojení systému (Arduino UNO + *[AD8232](https://microcontrollerslab.com/ad8232-ecg-module-pinout-interfacing-with-arduino-applications-features/)* + *[PPG senzor](https://devxplained.eu/en/blog/heart-rate-module-part-1)* + OLED SH1106 + mikrospínač):
+Níže je kompletní zapojení systému (*[Arduino UNO](https://www.makershop.de/download/uno-r3-manual.pdf)* + *[AD8232](https://microcontrollerslab.com/ad8232-ecg-module-pinout-interfacing-with-arduino-applications-features/)* + *[PPG senzor](https://devxplained.eu/en/blog/heart-rate-module-part-1)* + *[OLED SH1106](https://controllerstech.com/arduino-sh1106-oled-display-tutorial/)* + mikrospínač):
 
 <p align="left">
   <img src="images/zapojeni_fin.png" alt="Schéma zapojení" width="600">
