@@ -16,14 +16,15 @@
 4. [⚙️ Funkční bloky systému](#funkcni-bloky-systemu)
 5. [🔌 Hardware](#hardware)
 6. [🎚️ Zapojení](#zapojeni)
-7. [🛠️ Hardware design](#hardware-design)
-8. [⚙️ Funkce systému](#funkce-systemu)
-9. [🔍 Jak to funguje uvnitř](#jak-to-funguje-uvnitr)
-10. [📂 Hlavní soubory](#hlavni-soubory)
-11. [🎥 Video ukázka](#video-ukazka)
-12. [Poznámky](#poznamky)
-13. [📜 Autoři použitých knihoven](#autori-knihoven)
-14. [Licence](#licence)
+7. [🛠️ Hardware design](#ekg-elektrody)
+8. [🩺 Umístění a lepení EKG elektrod](#hardware-design)
+9. [⚙️ Funkce systému](#funkce-systemu)
+10. [🔍 Jak to funguje uvnitř](#jak-to-funguje-uvnitr)
+11. [📂 Hlavní soubory](#hlavni-soubory)
+12. [🎥 Video ukázka](#video-ukazka)
+13. [Poznámky](#poznamky)
+14. [📜 Autoři použitých knihoven](#autori-knihoven)
+15. [Licence](#licence)
 
 ---
 
@@ -172,7 +173,7 @@ Modul AD8232 používá **3 elektrody**:
 - **RL (Right Leg)** – referenční elektroda (ground), pravý podbřišek
 
 Nebo podle obrázku:
-<img src="images/ECG_electrodes.jpg" alt="HW-827" width="500">
+<img src="images/ECG_electrodes.png" alt="HW-827" width="500">
 <p align="center"><sub>
 Zdroj obrázku: Question #91783 na <a href="https://arduino.stackexchange.com/questions/91783/ad8232-measuring-heart-rate-only-if-usb-connector-is-touched-grounding-issue">Arduino StackExchange</a>.
 </sub></p>
