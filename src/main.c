@@ -218,9 +218,8 @@ int main(void)
                 draw_frame(ekg_wave, ekg_idx, last_bpm, "EKG", bpm_get_heart_state());
             }
         }
-        else   // PPG MODE
+        else
         {
-            /* přepnout ADC na A1 */
             ADMUX = (1<<REFS0) | PPG_ADC_CHANNEL;
 
             uint16_t raw = PPG_read_sensor_value();
@@ -228,13 +227,11 @@ int main(void)
 
             if (bpm_now > 0) {
                 last_bpm = bpm_now;
-                ppg_heart_state = !ppg_heart_state;   // <<< TOTO PŘIDAT
+                ppg_heart_state = !ppg_heart_state;
             }
 
-            /* správné mapování jako u EKG */
             uint8_t y0 = map_raw_to_y(raw);
 
-            /* jemný zoom, aby byl PPG vidět */
             int16_t z = y0 - 32;
             z = z * 2;
             int16_t y = 32 + z;
