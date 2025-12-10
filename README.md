@@ -1,52 +1,107 @@
+<div align="center">
+
+# 🔍 Hledání v dokumentaci
+
+<input type="text" placeholder="Zadejte hledaný výraz..." style="padding:10px; width:60%; font-size:16px;">
+
+</div>
+
+---
+
   **Vysoké učení technické v Brně, Fakulta elektrotechniky a komunikačních technologií, Ústav radioelektroniky, 2025/2026**  
 
 ---
 
-# Systém pro zobrazení EKG signálu a měření tepové frekvence. 
+# Systém pro zobrazení EKG a PPG signálu a měření tepové frekvence. 
 
+---
+
+# 📚 Obsah
+
+1. [Systém pro zobrazení EKG a PPG signálu a měření tepové frekvence](#systém-pro-zobrazení-ekg-a-ppg-signálu-a-měření-tepové-frekvence)
+2. [Členové týmu](#členové-týmu)
+3. [Popis projektu](#popis-projektu)
+4. [Výpočet BPM](#výpočet-tepové-frekvence-bpm)
+5. [Funkční bloky](#funkční-bloky-systému)
+6. [Hardware](#hardware)
+7. [Zapojení](#zapojení)
+8. [Hardware design](#hardware-design)
+9. [Funkce systému](#funkce-systému)
+10. [Jak to funguje uvnitř](#jak-to-funguje-uvnitř)
+11. [Hlavní soubory](#hlavní-soubory)
+12. [Video ukázka měření](#video-ukázka-měření)
+13. [Poznámky](#poznámky)
+
+---
 
 ## 👥 Členové týmu
 
- - Tomáš Běčák 
- - Mykhailo Krasichkov 
- - Daniel Kroužil 
+- **Tomáš Běčák** – Odpovědný za GitHub, implementace AD8232 driveru, spoluautor `main.c`  
+- **Mykhailo Krasichkov** – Spoluautor posteru, spoluautor PPG driveru, spoluautor `main.c`  
+- **Daniel Kroužil** – Spoluautor posteru, spoluautor PPG driveru, GitHub spoluadministrace, spoluautor `main.c`
 
 ## 📝 Popis projektu
 
-Tento projekt realizuje přenosný **EKG monitor**, který snímá a zobrazuje elektrickou aktivitu srdce pomocí modulu **AD8232** a mikrokontroléru **ATmega328P (Arduino UNO)**.
-Systém kromě vizualizace EKG signálu také automaticky vypočítává tepovou frekvenci. Výpočet probíhá na mikrokontroléru ATmega328P. 
+Projekt realizuje přenosný **EKG/PPG monitor** založený na mikrokontroléru **ATmega328P (Arduino UNO)**.  
+Systém umožňuje:
 
-## 🧮 Výpočet tepové frekvence (BPM) u EKG
+- snímat EKG signál modulem **AD8232**
+- snímat optický PPG signál senzorem **HW-827**
+- zobrazit waveform v reálném čase na **OLED SH1106 (128×64)**
+- počítat tepovou frekvenci (BPM) pro oba režimy
+- přepínat EKG ↔ PPG tlačítkem
+- detekovat odlepení elektrod (LO+/LO–)
 
-Systém v reálném čase vypočítává tepovou frekvenci na základě detekce R-špiček v EKG signálu.
+Firmware je napsaný **v čistém C**, bez Arduino frameworku.  
+Veškeré vykreslování probíhá přes I2C/TWI knihovnu.
 
-### Postup:
-1. Při detekci R-špičky mikrokontrolér změří čas od předchozí R-špičky.  
-2. Tento interval (RR interval) se použije pro výpočet tepové frekvence:
-   
+## 🧮 Výpočet tepové frekvence (BPM)
+
+Systém počítá BPM zvlášť pro EKG i PPG.
+
+### EKG (AD8232)
+- detekce R-špiček pomocí jednoduchého adaptivního prahu  
+- ukládá časy posledních detekcí  
+- BPM se počítá:  
 
 $BPM = \frac{60000}{\Delta t_{RR}}$
 
 kde $\Delta t_{RR}$ je rozdíl dvou R-peak časů v milisekundách.
 
+### PPG (HW-827)
+- signál je filtrován (EMA + noise reduction)  
+- pro zvýšení efektivní vzorkovací frekvence se měří více vzorků mezi refreshi displeje  
+- adaptivní detekce peaků  
+- z IBI (inter-beat interval) se počítá BPM podobně jako u EKG
+
+---
+
 ## ⚙️ Funkční bloky systému
 
 | Blok | Funkce |
 |------|---------|
-| **AD8232** | Zesílení a analogová filtrace EKG, detekce odlepené elektrody |
-| **ATmega328P** | ADC převod, EMA filtr, detekce R-špiček, výpočet BPM |
-| **LCD DISPLEJ (SH1106)** | Zobrazení EKG waveformu a BPM |
-| **Tlačítko** | Přepnutí módu EKG/PPG |
-| **Napájení** | 5 V přes USB, AD8232 z 3.3 V |
+| **AD8232** | EKG snímač, analogová filtrace, LO+/LO– detekce |
+| **PPG senzor (HW-827)** | Optické snímání průtoku krve, filtr + BPM algoritmus |
+| **ATmega328P** | ADC převod, řízení režimů, výpočet BPM, filtrace |
+| **OLED SH1106** | Kreslení waveformu a BPM v reálném čase |
+| **Tlačítko** | Přepínání EKG ↔ PPG režimu |
+| **Napájení** | 5 V (Arduino), 3.3 V pro AD8232 |
+
+---
 
 ## 🔌 Hardware
 
 Použité komponenty
- - Deska Arduino UNO Digital R3
- - EKG monitor AD8232
- - I2C OLED display 128x64, driver SH1106
+- Arduino UNO (ATmega328P)
+- AD8232 EKG modul
+- HW-827 PPG senzor
+- OLED 128×64 SH1106 (I2C)
+- Tlačítko přepínání režimu
+
+---
 
 ## 🎚️ Zapojení 
+
 | Arduino | AD8232 |
 |------|---------| 
 | 3V3 | 3.3V | 
@@ -62,11 +117,18 @@ Použité komponenty
 | A5 | SCK | 
 | A4 | SDA |
 
-| Arduino | HW-827 | 
+| Arduino | HW-827/PPG senzor | 
 |------|---------| 
 | GND | GND | 
 | 5V | VCC | 
-| A1 | Signal output |
+| A1 | Signal |
+
+| Arduino | Mikrospínač | 
+|------|---------| 
+| GND | Pravá horní nožička a levá horní nožička | 
+| D6 | Pravá dolní nožička a levá dolní nožička | 
+
+---
 
 ## 🛠️ Hardware design
 
@@ -82,60 +144,113 @@ Obr. 2 Propojení HW-827 s piny desky Arduino UNO *(zdroj: [DevXplained](https:/
 
 Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab](https://microcontrollerslab.com/ad8232-ecg-module-pinout-interfacing-with-arduino-applications-features/))*
 
+---
+
 ## ⚙️ Funkce systému
- - **Měření signálu EKG:**
- 
- - **Zesílení signálu mV --> V**
 
- - **Vzorkování, hledáni R špiček**
+- **EKG režim**
+  - ADC čtení z A0
+  - kontrola odlepení elektrod přes LO+/LO–
+  - filtrování + adaptivní baseline
+  - detekce R-špiček → výpočet BPM
 
- - **Zobrazení signálu a tepové frekvence:**
+- **PPG režim**
+  - čtení z A1
+  - digitální filtrace + oversampling
+  - detekce pulsů → výpočet BPM
+  - zvětšený vertikální zoom pro lepší čitelnost
 
+- **OLED SH1106**
+  - vykreslení waveformu (lineární spojnice)
+  - zobrazení BPM
+  - blikající srdce jako indikátor detekce beatů
+  - úvodní animace „EKG / PPG Monitor“
+
+---
 
 ## 🔍 Jak to funguje uvnitř?
 
+### Hlavní program (`main.c`)
+- inicializace všech modulů  
+- přepínání režimů  
+- řízení ADC  
+- vykreslování na OLED  
+- volání BPM algoritmů  
 
-📂 **Hlavní soubory**
+### EKG driver (`ad8232.c`)
+- LO+ / LO– logika  
+- čtení ADC0  
+
+### BPM logika (`bpm.c`)
+- detekce R-peaks  
+- výpočet BPM  
+
+### PPG driver (`ppg_sensor.c`)
+- filtrace  
+- detekce pulsů  
+- BPM z IBI  
+
+### OLED driver (`oled.c`)
+- grafické primitivy  
+- frame buffer  
+- rendering  
+
+### TWI (`twi.c`)
+- I2C transport pro OLED
+ 
+
+---
+
+## 📂 **Hlavní soubory**
 ```
 /..................................................Kořenový adresář projektu
-├── .vscode/.......................................
-├── include/.......................................
-│   │   └── timer.h................................Prototypy časovače, systémová timebase
+├── include/.......................................Hlavičkové soubory projektu
+│   └── timer.h....................................Prototypy časovače, systémová timebase
 ├── lib/...........................................Knihovny
 │   ├── oled/......................................Ovladač OLED displeje SH1106
 │   │   ├── oled.c.................................
 │   │   ├── oled.h.................................
 │   │   └── font.h.................................
-│   ├── uart/......................................UART ovladač (Peter Fleury)
-│   │   ├── uart.c.................................
-│   │   └── uart.h.................................
 │   ├── twi/.......................................I2C/TWI master ovladač pro AVR
 │   │   ├── twi.c..................................
 │   │   └── twi.h..................................
-│   ├── bpm/.......................................Detektor R-špiček v EKG signálu
-│   │   ├── rpeak.c................................
-│   │   └── rpeak.h................................
-│   │── ad8232/....................................Ovladač pro modul EKG AD8232
+│   ├── uart/......................................UART ovladač (Peter Fleury)
+│   │   ├── uart.c.................................
+│   │   └── uart.h.................................
+│   ├── bpm/.......................................Výpočet BPM + detekce špiček
+│   │   ├── bpm.c..................................
+│   │   └── bpm.h..................................
+│   ├── ad8232/....................................Ovladač EKG modulu AD8232
 │   │   ├── ad8232.c...............................
 │   │   └── ad8232.h...............................
-│   │── ppg_sensor/................................Ovladač pro PPG senzor
-│   │   ├── ad8232.c...............................
-│   │   └── ad8232.h...............................
-│   │── ppg_bpm/...................................Ovladač pro PPG senzor
-│   │   ├── ppg_bpm.c..............................
-│   │   └── ppg_bpm.h..............................
-├── src/........................................... 
-│   └── main.c.....................................
-├── platformio.ini.................................Konfigurace PlatformIO (board: Uno, AVR-GCC)
-└── build..........................................
+│   ├── ppg_sensor/................................Ovladač PPG senzoru + BPM algoritmus
+│   │   ├── ppg_sensor.c...........................
+│   │   └── ppg_sensor.h...........................
+├── src/...........................................Zdrojové kódy
+│   └── main.c.....................................Hlavní řídicí logika systému (EKG/PPG, OLED, BPM)
+└── README.md......................................Dokumentace projektu
 ```
-## Video ukázka měření
-### Prototyp:
-https://github.com/user-attachments/assets/84534ee5-a100-447a-b85d-66abca395b6b
+
+### Klíčové vlastnosti firmware
+- **Timer0** generuje millis() přes přerušení  
+- **X-SCALE** (1–4) umožňuje roztáhnout waveform v ose X  
+- **Bez Arduino frameworku** – čisté AVR C  
+- **Bez dynamické paměti**, OLED používá statický buffer  
+- **Debounce tlačítka softwarem**  
+- **Bezpečné přepínání ADC kanálů mezi EKG a PPG**
 
 ---
+
+## Video ukázka měření
+
 ---
+
+## Prototyp:
+<video src="videos/Prototype.mp4" controls width="500"></video>
+
+---
+
 Poznámky:
-žádná knihovna arduino.h
-ne arduino framework
-zdrojáky C a hlavičkové soubory
+- nepoužívá `arduino.h`
+- nepoužívá Arduino knihovny
+- projekt je plně v C (AVR-GCC)
