@@ -132,7 +132,7 @@ Použité komponenty
 Níže je kompletní zapojení systému (Arduino UNO + AD8232 + PPG senzor + OLED SH1106 + mikrospínač):
 
 <p align="center">
-  <img src="images/zapojeni_komplet.png" alt="Schéma zapojení" width="600">
+  <img src="images/zapojeni_fin.png" alt="Schéma zapojení" width="600">
 </p>
 
 ---
