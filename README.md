@@ -270,7 +270,7 @@ Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab
 
 ## Prototyp:
 <img src="images/prototype.jpg" alt="HW-827" width="500">
-![Video](https://github.com/256-514/DE2-Project-EKG/raw/main/videos/Prototype.mp4)
+[Video](https://github.com/256-514/DE2-Project-EKG/raw/main/videos/Prototype.mp4)
 
 ---
 
