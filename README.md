@@ -1,11 +1,3 @@
-<div align="center">
-
-# 🔍 Hledání v dokumentaci
-
-<input type="text" placeholder="Zadejte hledaný výraz..." style="padding:10px; width:60%; font-size:16px;">
-
-</div>
-
 ---
 
   **Vysoké učení technické v Brně, Fakulta elektrotechniky a komunikačních technologií, Ústav radioelektroniky, 2025/2026**  
