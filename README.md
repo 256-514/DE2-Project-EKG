@@ -10,28 +10,31 @@
 
 # 📚 Obsah
 
-1. [Systém pro zobrazení EKG a PPG signálu a měření tepové frekvence](#systém-pro-zobrazení-ekg-a-ppg-signálu-a-měření-tepové-frekvence)
-2. [Členové týmu](#členové-týmu)
-3. [Popis projektu](#popis-projektu)
-4. [Výpočet BPM](#výpočet-tepové-frekvence-bpm)
-5. [Funkční bloky](#funkční-bloky-systému)
-6. [Hardware](#hardware)
-7. [Zapojení](#zapojení)
-8. [Hardware design](#hardware-design)
-9. [Funkce systému](#funkce-systému)
-10. [Jak to funguje uvnitř](#jak-to-funguje-uvnitř)
-11. [Hlavní soubory](#hlavní-soubory)
-12. [Video ukázka měření](#video-ukázka-měření)
-13. [Poznámky](#poznámky)
+1. [Členové týmu](#clenove-tymu)
+2. [Popis projektu](#popis-projektu)
+3. [Výpočet BPM](#vypocet-bpm)
+4. [⚙️ Funkční bloky systému](#funkcni-bloky-systemu)
+5. [🔌 Hardware](#hardware)
+6. [🎚️ Zapojení](#zapojeni)
+7. [🛠️ Hardware design](#hardware-design)
+8. [⚙️ Funkce systému](#funkce-systemu)
+9. [🔍 Jak to funguje uvnitř](#jak-to-funguje-uvnitr)
+10. [📂 Hlavní soubory](#hlavni-soubory)
+11. [🎥 Video ukázka](#video-ukazka)
+12. [Poznámky](#poznamky)
+13. [📜 Autoři použitých knihoven](#autori-knihoven)
+14. [Licence](#licence)
 
 ---
 
+<a id="clenove-tymu"></a>
 ## 👥 Členové týmu
 
 - **Tomáš Běčák** – Odpovědný za GitHub, implementace AD8232 driveru, spoluautor `main.c`  
 - **Mykhailo Krasichkov** – Spoluautor posteru, spoluautor PPG driveru, spoluautor `main.c`  
 - **Daniel Kroužil** – Spoluautor posteru, spoluautor PPG driveru, GitHub spoluadministrace, spoluautor `main.c`
 
+<a id="popis-projektu"></a>
 ## 📝 Popis projektu
 
 Projekt realizuje přenosný **EKG/PPG monitor** založený na mikrokontroléru **ATmega328P (Arduino UNO)**.  
@@ -47,6 +50,7 @@ Systém umožňuje:
 Firmware je napsaný **v čistém C**, bez Arduino frameworku.  
 Veškeré vykreslování probíhá přes I2C/TWI knihovnu.
 
+<a id="vypocet-bpm"></a>
 ## 🧮 Výpočet tepové frekvence (BPM)
 
 Systém počítá BPM zvlášť pro EKG i PPG.
@@ -68,6 +72,7 @@ kde $\Delta t_{RR}$ je rozdíl dvou R-peak časů v milisekundách.
 
 ---
 
+<a id="funkcni-bloky-systemu"></a>
 ## ⚙️ Funkční bloky systému
 
 | Blok | Funkce |
@@ -81,6 +86,7 @@ kde $\Delta t_{RR}$ je rozdíl dvou R-peak časů v milisekundách.
 
 ---
 
+<a id="hardware"></a>
 ## 🔌 Hardware
 
 Použité komponenty
@@ -92,7 +98,8 @@ Použité komponenty
 
 ---
 
-## 🎚️ Zapojení 
+<a id="zapojeni"></a>
+## 🎚️ Zapojení
 
 | Arduino | AD8232 |
 |------|---------| 
@@ -122,6 +129,7 @@ Použité komponenty
 
 ---
 
+<a id="hardware-design"></a>
 ## 🛠️ Hardware design
 
 <img src="images/zapojeni.jpg" alt="HW-827" width="500">
@@ -138,6 +146,7 @@ Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab
 
 ---
 
+<a id="funkce-systemu"></a>
 ## ⚙️ Funkce systému
 
 - **EKG režim**
@@ -160,9 +169,11 @@ Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab
 
 ---
 
+<a id="jak-to-funguje-uvnitr"></a>
 ## 🔍 Jak to funguje uvnitř?
 
 ### Hlavní program (`main.c`)
+➡️ [Otevřít main.c](https://github.com/256-514/DE2-Project-EKG/blob/main/src/main.c)
 - inicializace všech modulů  
 - přepínání režimů  
 - řízení ADC  
@@ -170,30 +181,42 @@ Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab
 - volání BPM algoritmů  
 
 ### EKG driver (`ad8232.c`)
+➡️ [Otevřít ad8232.c](https://github.com/256-514/DE2-Project-EKG/blob/main/lib/ad8232/ad8232.c)  
+➡️ [Otevřít ad8232.h](https://github.com/256-514/DE2-Project-EKG/blob/main/lib/ad8232/ad8232.h)
 - LO+ / LO– logika  
 - čtení ADC0  
 
 ### BPM logika (`bpm.c`)
+➡️ [Otevřít bpm.c](https://github.com/256-514/DE2-Project-EKG/blob/main/lib/bpm/bpm.c)  
+➡️ [Otevřít bpm.h](https://github.com/256-514/DE2-Project-EKG/blob/main/lib/bpm/bpm.h)
 - detekce R-peaks  
 - výpočet BPM  
 
 ### PPG driver (`ppg_sensor.c`)
+➡️ [Otevřít ppg_sensor.c](https://github.com/256-514/DE2-Project-EKG/blob/main/lib/ppg_sensor/ppg_sensor.c)  
+➡️ [Otevřít ppg_sensor.h](https://github.com/256-514/DE2-Project-EKG/blob/main/lib/ppg_sensor/ppg_sensor.h)
 - filtrace  
 - detekce pulsů  
 - BPM z IBI  
 
 ### OLED driver (`oled.c`)
+➡️ [Otevřít oled.c](https://github.com/256-514/DE2-Project-EKG/blob/main/lib/oled/oled.c)  
+➡️ [Otevřít oled.h](https://github.com/256-514/DE2-Project-EKG/blob/main/lib/oled/oled.h)  
+➡️ [Otevřít font.h](https://github.com/256-514/DE2-Project-EKG/blob/main/lib/oled/font.h)
 - grafické primitivy  
 - frame buffer  
 - rendering  
 
 ### TWI (`twi.c`)
+➡️ [Otevřít twi.c](https://github.com/256-514/DE2-Project-EKG/blob/main/lib/twi/twi.c)  
+➡️ [Otevřít twi.h](https://github.com/256-514/DE2-Project-EKG/blob/main/lib/twi/twi.h)
 - I2C transport pro OLED
  
-
 ---
 
-## 📂 **Hlavní soubory**
+<a id="hlavni-soubory"></a>
+## 📂 Hlavní soubory
+
 ```
 /..................................................Kořenový adresář projektu
 ├── include/.......................................Hlavičkové soubory projektu
@@ -233,7 +256,8 @@ Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab
 
 ---
 
-## Video ukázka měření
+<a id="video-ukazka"></a>
+## 🎥 Video ukázka měření
 
 ---
 
@@ -242,7 +266,80 @@ Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab
 
 ---
 
-Poznámky:
+<a id="poznamky"></a>
+## Poznámky
+
 - nepoužívá `arduino.h`
 - nepoužívá Arduino knihovny
 - projekt je plně v C (AVR-GCC)
+
+---
+
+<a id="autori-knihoven"></a>
+## 📜 Autoři použitých knihoven a licence
+
+Projekt využívá několik knihoven třetích stran.  
+Zde jsou uvedeni jejich původní autoři a licence dle hlaviček souborů.
+
+### 🟦 TWI / I2C knihovna (`twi.c`, `twi.h`)
+- **Autor:** doc. Ing. Tomáš Fryza, Ph.D.  
+- **Licence:** MIT License  
+- **Poznámka:** Knihovna je určena pro AVR-GCC, testovaná na Arduino Uno.  
+- Zdrojové soubory obsahují copyright © 2018–2025.
+
+### 🟦 Timer knihovna (`timer.h`)
+- **Autor:** doc. Ing. Tomáš Fryza, Ph.D.  
+- **Licence:** MIT License  
+- **Poznámka:** Čistě hlavičková knihovna bez `.c` souboru.  
+- Copyright © 2019–2024.
+
+### 🟦 UART knihovna (`uart.c`, `uart.h`)
+- **Autor:** Peter Fleury  
+- **Licence:** GNU GPL v2 (GNU General Public License Version 2)  
+- **Zdroj:** klasická UART knihovna pro AVR mikrokontroléry  
+- Poznámka: Knihovna je velmi rozšířená a stabilní.
+
+### 🟦 OLED SH1106 knihovna (`oled.c`, `oled.h`, `font.h`)
+- **Autor:** Michael Köhler (Skie-Systems), další přispěvatelé  
+- **Licence:** GNU GPL v3  
+- **Poznámka:** Jedná se o knihovnu pro ovládání SSD1306/SSD1309/SH1106 displejů, podporuje GRAPHICMODE.  
+- Hlavička souboru uvádí více jazykových verzí (EN/DE).
+
+### 🟩 Vlastní kódy týmu (Běčák, Krasichkov, Kroužil)
+Týká se souborů:
+
+- `main.c`  
+- `ad8232.c`, `ad8232.h`  
+- `bpm.c`, `bpm.h`  
+- `ppg_sensor.c`, `ppg_sensor.h`  
+
+Tyto soubory jsou **originální dílo autorů projektu**, licencované pod vámi definovanou licencí SPL-NC (Student Project License – Non-Commercial).
+
+---
+
+<a id="licence"></a>
+## Licence
+
+Tento projekt je uvolněn pod licencí **SPL-NC (Student Project License – Non-Commercial)**.
+
+### Podmínky použití:
+
+- 📘 **Je dovoleno**:
+  - používat projekt pro studijní a výukové účely,
+  - upravovat zdrojové kódy,
+  - vytvářet odvozené práce,
+  - šířit projekt mezi studenty a akademickou veřejností,
+  - odkazovat na tento projekt.
+
+- 🚫 **Není dovoleno**:
+  - používat projekt pro **komerční účely** bez předchozího písemného souhlasu autorů,
+  - prodávat zařízení založená na tomto projektu,
+  - využívat projekt v komerčních produktech nebo službách.
+
+- 📎 **Podmínky**:
+  - Musí být zachováno jméno autorů (Běčák, Krasichkov, Kroužil).
+  - Musí být zachována tato licence.
+  - Odvozené práce musí uvádět, že vychází z tohoto projektu.
+
+### © 2025 Autoři projektu  
+Tomáš Běčák, Mykhailo Krasichkov, Daniel Kroužil 
