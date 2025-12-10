@@ -279,11 +279,15 @@ Zdroj obrázku: Question #91783 na <a href="https://arduino.stackexchange.com/qu
 <a id="video-ukazka"></a>
 ## 🎥 Video ukázka měření
 
+> Poznámka: GitHub nezobrazuje video soubory větší než cca 5 MB přímo v náhledu.
+> Kliknutím na odkaz níže se video stáhne.
+
+[Stáhnout ukázkové video](https://github.com/256-514/DE2-Project-EKG/raw/refs/heads/main/videos/Meassure.mp4)
+
 ---
 
 ## Prototyp:
 <img src="images/prototype.jpg" alt="HW-827" width="500">
-https://github.com/256-514/DE2-Project-EKG/raw/main/videos/Prototype.mp4
 
 ---
 
