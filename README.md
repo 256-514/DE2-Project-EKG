@@ -131,7 +131,7 @@ Použité komponenty
 Níže je kompletní zapojení systému (*[Arduino UNO](https://www.makershop.de/download/uno-r3-manual.pdf)* + *[AD8232](https://microcontrollerslab.com/ad8232-ecg-module-pinout-interfacing-with-arduino-applications-features/)* + *[PPG senzor](https://devxplained.eu/en/blog/heart-rate-module-part-1)* + *[OLED SH1106](https://controllerstech.com/arduino-sh1106-oled-display-tutorial/)* + mikrospínač):
 
 <p align="left">
-  <img src="images/zapojeni_fin.png" alt="Schéma zapojení" width="600">
+  <img src="images/EKG_schema_komplet.png" alt="Schéma zapojení" width="600">
 </p>
 
 ---
