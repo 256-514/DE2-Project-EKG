@@ -175,7 +175,7 @@ Modul AD8232 používá **3 elektrody**:
 Nebo podle obrázku:
 
 <p align="center">
-  <img src="images/ECG_electrodes.jpg" alt="ECG electrodes placement" width="500">
+  <img src="images/ECG_electrodes.png" alt="ECG electrodes placement" width="500">
 </p>
 
 <p align="center"><sub>
