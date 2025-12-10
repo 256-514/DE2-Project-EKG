@@ -36,48 +36,43 @@ void bpm_init(void)
 
 uint16_t bpm_process_sample(uint16_t sample)
 {
+    static uint16_t prev_sample = 0;
+    static float avg_ibi = 0.0f;
+    const float ALPHA = 0.25f;
     uint32_t now = millis();
-    uint32_t delta = now - last_beat_time;
+    uint32_t dt = now - last_beat_time;
 
-    if(sample > avg_dc) avg_dc++;
-    else avg_dc--;
-
+    if (sample > avg_dc) avg_dc++; else if (sample < avg_dc) avg_dc--;
     threshold = avg_dc + 45;
 
-    uint16_t bpm_out = 0;
+    uint16_t out = 0;
 
-    if(sample > threshold && !triggered)
+    if (sample > threshold && !triggered && (sample > prev_sample) && (sample - prev_sample) > 18)
     {
-        if(delta > 450)
+        if (dt > 300 && dt < 2000)
         {
-            if(delta < 2000)
-            {
-                uint16_t new_bpm = (uint16_t)(60000UL / delta);
+            uint16_t inst_bpm = (uint16_t)(60000UL / dt);
 
-                bpm_buf[bpm_idx] = new_bpm;
-                bpm_idx = (bpm_idx + 1) % BPM_AVG_SIZE;
+            if (avg_ibi == 0.0f) avg_ibi = dt;
+            else avg_ibi = 0.2f * dt + 0.8f * avg_ibi;
 
-                if(bpm_filled < BPM_AVG_SIZE) bpm_filled++;
+            last_bpm = (uint16_t)(60000.0f / avg_ibi + 0.5f);
 
-                uint32_t sum = 0;
-                for(uint8_t i=0;i<bpm_filled;i++)
-                    sum += bpm_buf[i];
+            last_bpm = (uint16_t)(ALPHA * inst_bpm + (1.0f-ALPHA) * last_bpm + 0.5f);
 
-                last_bpm = sum / bpm_filled;
-                bpm_out  = last_bpm;
-
-                heart_state = !heart_state;
-            }
-
-            last_beat_time = now;
-            triggered = 1;
+            out = last_bpm;
+            heart_state = !heart_state;
         }
+        last_beat_time = now;
+        triggered = 1;
     }
-    else if(sample < (threshold - 20) && triggered)
+    else if (sample < (threshold - 15) && triggered)
     {
         triggered = 0;
     }
 
+    prev_sample = sample;
+    return out;
 }
 
 uint16_t bpm_get_last_bpm(void)
