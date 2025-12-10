@@ -174,7 +174,10 @@ Modul AD8232 používá **3 elektrody**:
 
 Nebo podle obrázku:
 
-<img src="images/ECG_electrodes.png" alt="HW-827" width="500">
+<p align="center">
+  <img src="images/ECG_electrodes.jpg" alt="ECG electrodes placement" width="500">
+</p>
+
 <p align="center"><sub>
 Zdroj obrázku: Question #91783 na <a href="https://arduino.stackexchange.com/questions/91783/ad8232-measuring-heart-rate-only-if-usb-connector-is-touched-grounding-issue">Arduino StackExchange</a>.
 </sub></p>
