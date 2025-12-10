@@ -3,35 +3,25 @@
 #include <util/delay.h>
 #include <stdio.h>
 
-// --- Externí Deklarace ---
-
-// Deklarace externí proměnné z Arduino C++ jádra pro měření času.
 extern volatile unsigned long timer0_millis; 
 
-// --- Konstanty a Globální Proměnné pro Algoritmus ---
-
-#define THRESHOLD 10       // SNÍŽENÁ prahová hodnota pro lepší citlivost (z 30 na 20)
+#define THRESHOLD 10
 #define MIN_BPM 40
 #define MAX_BPM 180
-#define SAMPLE_SIZE 8      // ZRYCHLENÁ velikost klouzavého průměru (z 10 na 8)
-#define BEAT_COUNT 8       // Počet detekovaných tepů pro průměrování IBI
+#define SAMPLE_SIZE 8      
+#define BEAT_COUNT 8       
 
-// Stavové proměnné
 static uint16_t Signal = 0;
 static uint16_t running_avg = 512; 
 static uint16_t pulse_threshold = 512 + THRESHOLD;
 static bool Pulse = false;         
 static uint32_t lastBeatTime = 0;  
 
-// Proměnné pro výpočet BPM
 static uint16_t beatIntervals[BEAT_COUNT]; 
 static uint8_t IBI_index = 0;
 static uint8_t beatCounter = 0;
 static bool firstBeat = true;
 
-// --- Implementace Pomocných Funkcí ---
-
-// Funkce pro bezpečné získání času v milisekundách
 uint32_t get_millis(void) {
     uint32_t m;
     uint8_t oldSREG = SREG;
@@ -44,8 +34,7 @@ uint32_t get_millis(void) {
 
 void PPG_init(void) {
     ADMUX = (1 << REFS0) | (PPG_ADC_CHANNEL); 
-    
-    // Povolit ADC (ADEN), Předdělička 128
+
     ADCSRA = (1 << ADEN) | (1 << ADPS2) | (1 << ADPS1) | (1 << ADPS0);
 }
 
