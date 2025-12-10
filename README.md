@@ -16,15 +16,14 @@
 4. [⚙️ Funkční bloky systému](#funkcni-bloky-systemu)
 5. [🔌 Hardware](#hardware)
 6. [🎚️ Zapojení](#zapojeni)
-7. [🛠️ Hardware design](#hardware-design)
-8. [🩺 Umístění a lepení EKG elektrod](#ekg-elektrody)
-9. [⚙️ Funkce systému](#funkce-systemu)
-10. [🔍 Jak to funguje uvnitř](#jak-to-funguje-uvnitr)
-11. [📂 Hlavní soubory](#hlavni-soubory)
-12. [🎥 Video ukázka](#video-ukazka)
-13. [Poznámky](#poznamky)
-14. [📜 Autoři použitých knihoven](#autori-knihoven)
-15. [Licence](#licence)
+7. [🩺 Umístění a lepení EKG elektrod](#ekg-elektrody)
+8. [⚙️ Funkce systému](#funkce-systemu)
+9. [🔍 Jak to funguje uvnitř](#jak-to-funguje-uvnitr)
+10. [📂 Hlavní soubory](#hlavni-soubory)
+11. [🎥 Video ukázka](#video-ukazka)
+12. [Poznámky](#poznamky)
+13. [📜 Autoři použitých knihoven](#autori-knihoven)
+14. [Licence](#licence)
 
 ---
 
@@ -129,28 +128,11 @@ Použité komponenty
 | D6 | Pravá dolní nožička a levá dolní nožička | 
 
 
-Níže je kompletní zapojení systému (Arduino UNO + AD8232 + PPG senzor + OLED SH1106 + mikrospínač):
+Níže je kompletní zapojení systému (Arduino UNO + *[AD8232](https://microcontrollerslab.com/ad8232-ecg-module-pinout-interfacing-with-arduino-applications-features/)* + *[PPG senzor](https://devxplained.eu/en/blog/heart-rate-module-part-1)* + OLED SH1106 + mikrospínač):
 
 <p align="left">
   <img src="images/zapojeni_fin.png" alt="Schéma zapojení" width="600">
 </p>
-
----
-
-<a id="hardware-design"></a>
-## 🛠️ Hardware design
-
-<img src="images/zapojeni.jpg" alt="HW-827" width="500">
-
-Obr. 1 Propojení
-
-<img src="images/HW-827.jpg" alt="HW-827 (Pulse Sensor)" width="45%">
-
-Obr. 2 Propojení HW-827 s piny desky Arduino UNO *(zdroj: [DevXplained](https://devxplained.eu/en/blog/heart-rate-module-part-1))*
-
-<img src="images/AD8232.jpeg" alt="AD8232 (EKG modul)" width="45%">
-
-Obr. 3 Propojení AD8232 s piny desky Arduino UNO *(zdroj: [Microcontrollers Lab](https://microcontrollerslab.com/ad8232-ecg-module-pinout-interfacing-with-arduino-applications-features/))*
 
 ---
 
